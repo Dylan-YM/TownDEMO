@@ -1,0 +1,30 @@
+//
+//  NoHightButton.swift
+//  TownDemo
+//
+//  Created by richard_ym on 2017/1/17.
+//  Copyright © 2017年 richard_ym. All rights reserved.
+//
+
+import UIKit
+
+class NoHightButton: UIButton {
+
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
+    override var isHighlighted: Bool{
+        set{
+        
+        }
+        get{
+        return false
+        }
+    
+    }
+    
+}

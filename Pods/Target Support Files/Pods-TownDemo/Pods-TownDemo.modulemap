@@ -1,0 +1,6 @@
+framework module Pods_TownDemo {
+  umbrella header "Pods-TownDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
