@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
         self.backScrollView.bounces = false
         self.backScrollView.isPagingEnabled = true
         
-        let dynamicsView = DynamicsView()
+        let dynamicsView = DynamicsView.init(frame: self.view.bounds, style: .grouped)
         self.backScrollView.addSubview(dynamicsView)
       
         dynamicsView.snp.makeConstraints { (make) in

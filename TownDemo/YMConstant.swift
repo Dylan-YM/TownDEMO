@@ -26,6 +26,11 @@ let PHONE5_HEIGHT          =    568.0
 let PHONE6_WIDTH           =    375.0
 let PHONE6P_WIDTH          =    414.0
 
+let red = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
+let green = CGFloat( arc4random_uniform(255))/CGFloat(255.0)
+let blue = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
+let randomColor = UIColor.init(red:red, green:green, blue:blue , alpha: 1)
+
 
 
 

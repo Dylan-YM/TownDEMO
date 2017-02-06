@@ -11,9 +11,14 @@ import UIKit
 class CustomLabel: UILabel {
  
     
-    class func setupNewLabel(){
-    
-    
+    class func setupNewLabel(text:String,textAliment:NSTextAlignment,textColor:UIColor,textFont:UIFont) ->UILabel{
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = textAliment
+        label.textColor = textColor
+        label.font = textFont
+
+        return label
     }
 
 }
