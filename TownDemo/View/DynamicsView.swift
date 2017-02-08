@@ -15,7 +15,7 @@ class DynamicsView: UITableView,UITableViewDelegate,UITableViewDataSource {
         self.backgroundColor = randomColor
         self.dataSource = self
         self.delegate = self
-        self.estimatedRowHeight = 44;
+        self.estimatedRowHeight = 200;
         self.rowHeight = UITableViewAutomaticDimension
         
     }
@@ -32,17 +32,25 @@ class DynamicsView: UITableView,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "dynamic") as?
-        SuggestedFollowsTableViewCell
-        if cell == nil {
-            cell = SuggestedFollowsTableViewCell(style: .default, reuseIdentifier: "dynamic")
+        if indexPath.row < 3 {
+            var cell = tableView.dequeueReusableCell(withIdentifier: "suggestFollowCell") as?
+            SuggestedFollowsTableViewCell
+            if cell == nil {
+                cell = SuggestedFollowsTableViewCell(style: .default, reuseIdentifier: "suggestFollowCell")
+            }
+ 
+            return cell!
+        }else{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "bigImageCell") as?
+            BigImageTableViewCell
+            if cell == nil {
+                cell = BigImageTableViewCell(style: .default, reuseIdentifier: "bigImageCell")
+            }
+
+              return cell!
         }
-       
-        return cell!
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-            
         let headSuggestView = UIView()
         let suggestLabel = CustomLabel.setupNewLabel(text: "推荐关注的人", textAliment: .left, textColor: .lightGray, textFont: UIFont.systemFont(ofSize: 11))
         let headButton = NoHightButton()

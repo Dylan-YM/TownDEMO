@@ -70,12 +70,12 @@ class SuggestedFollowsTableViewCell: UITableViewCell {
         iconView.image = UIImage.init(named: "intro2")
         addFollows.setImage(UIImage.init(named: "dynamic_profile_yellow"), for: .normal)
         deleteBtn.setImage(UIImage.init(named: "error_yellow"), for: .normal)
-        self.contentView.snp.makeConstraints { (maker) in
-            maker.left.equalTo(self.snp.left)
-            maker.right.equalTo(self.snp.right)
-            maker.top.equalTo(self.snp.top)
-            maker.bottom.equalTo(iconView.snp.bottom).offset(suggestMargin )
-        }
+//        self.contentView.snp.makeConstraints { (maker) in
+//            maker.left.equalTo(self.snp.left)
+//            maker.right.equalTo(self.snp.right)
+//            maker.top.equalTo(self.snp.top)
+//            maker.bottom.equalTo(iconView.snp.bottom).offset(suggestMargin )
+//        }
     }
     
 }
