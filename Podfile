@@ -7,6 +7,7 @@ target 'TownDemo' do
 pod 'SnapKit'
  pod 'AFNetworking'
  pod 'SDWebImage'
+  pod 'MJRefresh', '~> 3.1.12'
   # Pods for TownDemo
 
 end

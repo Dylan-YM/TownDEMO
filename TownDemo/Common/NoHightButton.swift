@@ -27,8 +27,16 @@ class NoHightButton: UIButton {
     
     }
     
-    class func setupNohighButton(){
+    class func setupNohighButton(title:String,titleColor:UIColor,seleteColor:UIColor,normalImg:UIImage?,seleteImg:UIImage?,backColor:UIColor,textFont:UIFont) ->NoHightButton{
     
-    
+        let btn = NoHightButton()
+        btn.setTitle(title, for: .normal)
+        btn.setTitleColor(titleColor, for: .normal)
+        btn.setTitleColor(seleteColor, for: .selected)
+        btn.setImage(normalImg, for: .normal)
+        btn.setImage(seleteImg, for: .selected)
+        btn.backgroundColor = backColor
+        btn.titleLabel?.font = textFont
+        return btn
     }
 }

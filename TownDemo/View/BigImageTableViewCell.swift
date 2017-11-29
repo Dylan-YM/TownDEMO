@@ -9,15 +9,15 @@
 import UIKit
 
 class BigImageTableViewCell: UITableViewCell {
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     var vipIcon = UIImageView()
@@ -42,7 +42,7 @@ class BigImageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func setupUI(){
-        self.contentView.addSubview(backImageIcon)
+        contentView.addSubview(backImageIcon)
         backImageIcon.addSubview(vipIcon)
         backImageIcon.addSubview(sixCircleIcon)
         backImageIcon.addSubview(subTitleLabel)
@@ -57,29 +57,45 @@ class BigImageTableViewCell: UITableViewCell {
         vipIcon.image = UIImage.init(named: "vip")
         sixCircleIcon.image = UIImage.init(named: "sixVenue-yellow")
         backImageIcon.image = UIImage.init(named: "avatar_userprofile_2")
-        avatarIcon.image = UIImage.init(named: "intro1")
+        
+        avatarIcon.image = UIImage.init(named: "3333")
         eyeIcon.image = UIImage.init(named: "eyes")
         messageIcon.image = UIImage.init(named: "message_white")
         loveIcon.image = UIImage.init(named: "love_white")
+        
+    }
+    func autoLayoutSetup(){
         backImageIcon.snp.makeConstraints { (maker) in
-            maker.left.equalTo(self.contentView.snp.left)
-            maker.top.equalTo(self.contentView.snp.top)
-            maker.right.equalTo(self.contentView.snp.right)
-         maker.bottom.equalTo(contentView.snp.bottom).offset(200)
+            maker.left.equalTo(contentView.snp.left)
+            maker.top.equalTo(contentView.snp.top)
+            maker.right.equalTo(contentView.snp.right)
+            maker.height.equalTo(250)
+            maker.bottom.equalTo(contentView.snp.bottom)
         }
         vipIcon.snp.makeConstraints { (maker) in
             maker.top.equalTo(backImageIcon.snp.top).offset(suggestMargin)
             maker.left.equalTo(backImageIcon.snp.left).offset(suggestMargin)
             maker.size.equalTo(CGSize(width: 50, height: 50))
         }
-        timeLabel.snp.makeConstraints { (maker) in
-            maker.top.equalTo(backImageIcon.snp.bottom).offset(-50)
-            maker.left.equalTo(backImageIcon.snp.left).offset(50)
+        avatarIcon.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(vipIcon.snp.centerX)
+            maker.bottom.equalTo(backImageIcon.snp.bottom).offset(-suggestMargin)
+            maker.size.equalTo(CGSize(width: 50, height: 50))
+        }
+        nameLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(vipIcon.snp.right).offset(suggestMargin)
+            maker.centerY.equalTo(avatarIcon.snp.centerY)
         }
         
+        subTitleLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(nameLabel.snp.left)
+            maker.bottom.equalTo(nameLabel.snp.top).offset(-suggestMargin)
+        }
+      
+        
         positionLabel.snp.makeConstraints { (maker) in
-            maker.left.equalTo(timeLabel.snp.left)
-            maker.top.equalTo(timeLabel.snp.bottom).offset(suggestMargin)
+            maker.left.equalTo(subTitleLabel.snp.left)
+            maker.bottom.equalTo(subTitleLabel.snp.top).offset(-suggestMargin)
         }
         sixCircleIcon.snp.makeConstraints { (maker) in
             maker.centerX.equalTo(vipIcon.snp.centerX)
@@ -87,34 +103,11 @@ class BigImageTableViewCell: UITableViewCell {
             maker.size.equalTo(CGSize(width: 25, height: 25))
         }
         
-        subTitleLabel.snp.makeConstraints { (maker) in
-            maker.left.equalTo(timeLabel.snp.left)
-            maker.top.equalTo(positionLabel.snp.bottom).offset(suggestMargin)
+        timeLabel.snp.makeConstraints { (maker) in
+            maker.bottom.equalTo(positionLabel.snp.top).offset(-suggestMargin)
+            maker.left.equalTo(nameLabel.snp.left)
         }
-        nameLabel.snp.makeConstraints { (maker) in
-            maker.left.equalTo(timeLabel.snp.left)
-            maker.top.equalTo(subTitleLabel.snp.bottom).offset(suggestMargin)
-        }
-        avatarIcon.snp.makeConstraints { (maker) in
-            maker.centerX.equalTo(vipIcon.snp.centerX)
-            maker.centerY.equalTo(nameLabel.snp.centerY)
-            maker.size.equalTo(CGSize(width: 25, height: 25))
-        }
-        //        eyeIcon.snp.makeConstraints { (maker) in
-        //
-        //        }
-        //        messageIcon.snp.makeConstraints { (maker) in
-        //
-        //        }
-        //        loveIcon.snp.makeConstraints { (maker) in
-        //
-        //        }
-       }
-    func autoLayoutSetup(){
-        
-        
-        
     }
-
-
+    
+    
 }

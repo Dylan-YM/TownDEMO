@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController,UIScrollViewDelegate {
     
     var seleteBtn = NoHightButton()
     // 导航按钮名
@@ -30,14 +30,11 @@ class MainViewController: UIViewController {
         let name = [NoHightButton]()
         return name
     }()
+    
     let backScrollView =  UIScrollView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
-    
+
     }
     //创建视图
     func setupScrollView(){
@@ -45,18 +42,69 @@ class MainViewController: UIViewController {
         self.backScrollView.contentSize = CGSize(width: CGFloat(Int(SCREEN_WIDTH) * navBtnArr.count), height: (SCREEN_HEIGHT - (CGFloat)(PHONE_NAVIGATIONBAR_HEIGHT)))
         self.view.addSubview(self.backScrollView)
         self.backScrollView.bounces = false
+        self.backScrollView.backgroundColor = UIColor.white
         self.backScrollView.isPagingEnabled = true
-        
+        self.backScrollView.delegate = self
         let dynamicsView = DynamicsView.init(frame: self.view.bounds, style: .grouped)
         self.backScrollView.addSubview(dynamicsView)
-      
+//      self.backScrollView.contentOffset = CGPoint(x: 0, y: 50 + 44 * 3)
         dynamicsView.snp.makeConstraints { (make) in
             make.left.equalTo(self.backScrollView.snp.left)
             make.top.equalTo(self.backScrollView.snp.top)
-            make.size.equalTo(CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT - (CGFloat)(PHONE_NAVIGATIONBAR_HEIGHT))))
+            make.size.equalTo(CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT )))
+        }
+        // 动态页面Block 回调
+        dynamicsView.seleteBlock = {
+            let transFormVc = YMTransFormViewController()
+            self.navigationController?.pushViewController(transFormVc, animated: true)
         }
         
- 
+        // 城市页面
+        let cityView = CityView.init(frame: self.view.bounds)
+        backScrollView.addSubview(cityView)
+        cityView.snp.makeConstraints { (make) in
+            make.left.equalTo(self.backScrollView.snp.left).offset(SCREEN_WIDTH)
+            make.top.equalTo(self.backScrollView.snp.top)
+            make.size.equalTo(CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT )))
+        }
+        
+        // 发现页面
+        let findView = YMFindView.init(frame: view.bounds)
+        backScrollView.addSubview(findView)
+        findView.snp.makeConstraints { (make) in
+            make.left.equalTo(cityView.snp.left).offset(SCREEN_WIDTH)
+            make.top.equalTo(self.backScrollView.snp.top)
+            make.size.equalTo(CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT )))
+        }
+        
+        // 设置通知页面
+        let notifyView = YMNotifyView(frame: view.bounds)
+        backScrollView.addSubview(notifyView)
+        notifyView.snp.makeConstraints { (make) in
+            make.left.equalTo(findView.snp.left).offset(SCREEN_WIDTH)
+            make.top.equalTo(self.backScrollView.snp.top)
+            make.size.equalTo(CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT )))
+        }
+        
+        // 设置我的页面
+        let mySelfView = YMMyView(frame: view.bounds)
+        backScrollView.addSubview(mySelfView)
+        mySelfView.snp.makeConstraints { (make) in
+            make.left.equalTo(notifyView.snp.left).offset(SCREEN_WIDTH)
+            make.top.equalTo(self.backScrollView.snp.top)
+            make.size.equalTo(CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT )))
+        }
+        
+        // 设置我的页面
+        let loginView = YMLoginView(frame: view.bounds)
+        backScrollView.addSubview(loginView)
+        loginView.snp.makeConstraints { (make) in
+            make.left.equalTo(mySelfView.snp.left).offset(SCREEN_WIDTH)
+            make.top.equalTo(self.backScrollView.snp.top)
+            make.size.equalTo(CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT )))
+        }
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -119,9 +167,24 @@ class MainViewController: UIViewController {
         return navBtn
     }
     func  navBtnClick(btn:NoHightButton){
+        backScrollView.isScrollEnabled = true
         seleteBtn.isSelected = false
         btn.isSelected = true
            seleteBtn = btn
         self.backScrollView.contentOffset = CGPoint(x: CGFloat(btn.tag * (Int)(SCREEN_WIDTH)), y: 0)
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        seleteBtn.isSelected = false
+        let btn:NoHightButton =  navBtnArr[NSInteger(scrollView.contentOffset.x / SCREEN_WIDTH)]
+        btn.isSelected = true
+        seleteBtn = btn
+        print(scrollView.contentOffset.x ,scrollView.contentOffset.y)
+    }
+   
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+
+    }
+    
+    
 }

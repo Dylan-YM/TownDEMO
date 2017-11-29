@@ -15,10 +15,14 @@ class DynamicsView: UITableView,UITableViewDelegate,UITableViewDataSource {
         self.backgroundColor = randomColor
         self.dataSource = self
         self.delegate = self
-        self.estimatedRowHeight = 200;
+        self.estimatedRowHeight = 500;
         self.rowHeight = UITableViewAutomaticDimension
         
     }
+    
+    typealias didSeleteBlock = () -> (Void)
+    var seleteBlock : didSeleteBlock?
+    
     
     
     
@@ -28,7 +32,7 @@ class DynamicsView: UITableView,UITableViewDelegate,UITableViewDataSource {
   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,4 +81,11 @@ class DynamicsView: UITableView,UITableViewDelegate,UITableViewDataSource {
         return CGFloat(suggestFollowBtnWeight)
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        if (self.seleteBlock != nil) {
+            self.seleteBlock!()
+        }
+    }
 }
