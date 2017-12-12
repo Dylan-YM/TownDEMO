@@ -10,7 +10,7 @@ import UIKit
 
 class YMFindView: UIView,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource {
 
-    let searchBar = UISearchBar()
+    let searchBar = YMCustomSearchBar()
     var titleTableView : UITableView?
     var storyTableView : UITableView?
     var findViewCell : YMFindViewTitleCell?
@@ -33,7 +33,7 @@ class YMFindView: UIView,UISearchBarDelegate,UITableViewDelegate,UITableViewData
         searchBar.placeholder = "搜索故事、人物、话题、地点"
         searchBar.delegate = self
         searchBar.contentMode = .scaleAspectFill;
-        searchBar.backgroundColor = UIColor.yellow
+        searchBar.setSearchFieldBackgroundImage(UIImage.init(named: "searchBarBackground"), for: .normal)
         searchBar.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.snp.left).offset(suggestMargin)
             maker.top.equalTo(self.snp.top).offset(suggestMargin)

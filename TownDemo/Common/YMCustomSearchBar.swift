@@ -15,8 +15,26 @@ class YMCustomSearchBar: UISearchBar {
 
 
     override func layoutSubviews() {
+        
+        if let view:UIView = self.subviews.first {
+            for curr in view.subviews {
+                guard let searchBarBackgroundClass = NSClassFromString("UISearchBarBackground") else {
+                    return
+                }
+                if curr.isKind(of:searchBarBackgroundClass){
+                    if let imageView = curr as? UIImageView{
+                        imageView.removeFromSuperview()
+                        break
+                    }
+                }
+            }
+        }
+    
+
         for  view  in subviews{
+    
             for subview in view.subviews {
+                    print(  type(of: subview))
                 if subview.isKind(of: UITextField.self){
                     // 搜索框
                     var backImageNew: UIImage?
@@ -27,17 +45,16 @@ class YMCustomSearchBar: UISearchBar {
                         subview.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
                     }
                     if backImage == nil {
-                         backImageNew = UIImage.init(named: "searchBarBackground")
+//                         backImageNew = UIImage.init(named: "searchBarBackground")
                     }else{
                         backImageNew = backImage!
                        
                     }
-                    (subview as!UITextField).background = backImageNew
+
+                    subview.layer.masksToBounds = true
                     
                 }
             }
-        
+            }
         }
-    }
-
 }

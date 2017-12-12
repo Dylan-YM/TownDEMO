@@ -141,9 +141,7 @@ class CityView: UIView,UITableViewDelegate,UITableViewDataSource,UISearchBarDele
         }
         self.addSubview(searchBar)
         searchBar.placeholder = "搜索地点"
-        searchBar.backgroundImage = UIImage.init(named: "searchBarBackground")
         searchBar.delegate = self
-        searchBar.contentMode = .scaleAspectFill;
         searchBar.setSearchFieldBackgroundImage(UIImage.init(named: "searchBarBackground"), for: .normal)
         searchBar.snp.makeConstraints { (maker) in
             maker.left.equalTo(cityBtn.snp.right)
